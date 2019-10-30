@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="cart-title mt-50">
+                    <center>
+                     <h2>Shopping Cart</h2>
+                    </center>
+                </div>
+
+                <div class="cart-table clearfix">
+                    <table class="table table-responsive">
+                        <thead>
+                        <tr style="background-color: black; color: white; font-size: x-large;">
+                            <th></th>
+                            <th><br><center>Name</center><br></th>
+                            <th><br><center>Price</center><br></th>
+                             <th><br><center>totalPrice</center><br></th>
+                            <th><br><center>Quantity</center><br></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for ob in ob %}
+                        <tr>
+                            <td class="cart_product_img">
+                              <center>  <img src="{{ob.title.image.url}}" alt="Product" width="120" height="100"></center>
+                            </td>
+                            <td class="cart_product_desc">
+                                <br>  <center> <h5>{{ob.title.title}}</h5></center>
+                            </td>
+                             <td class="cart_product_desc">
+                                <br>  <center> <h5>{{ob.title.price}}</h5></center>
+                            </td>
+                            <td class="price">
+                                <br><center><span>{{ob.totalprice}}</span></center>
+                            </td>
+                            <td class="qty">
+                                <br> <center> <h6>{{ ob.quantity }} </h6></center>
+                            </td>
+                            <td>
+                                <center><br>
+                                    <a href="{% url 'textileapp:buynow' ob.title_id %}"><input type="submit" value="Buynow"></a>
+                                    <a href="{% url 'textileapp:deletecart' ob.id %}">  <input type="submit" value="Remove"></a>
+                                </center>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content %}

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<form action="{% url 'textileapp:coupon' ob.id %}" method="post" class="info">
+    {% csrf_token %}
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="coupon">coupon</label>
+            <input class="form-control" id="coupon" placeholder="" type="text"
+                   name="coupon" onkeyup="couponoffer()">
+            <p class="submit">
+                <button class="btn btn-primary"> confirmation</button>
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="coupon">coupon</label>
+            <input class="form-control" id="couponprice" placeholder="" type="text"
+                   name="couponprice" value="{{ob.couponprice}}">
+
+        </div>
+    </div>
+
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="coupon">coupon</label>
+            <input class="form-control" id="total" placeholder="" type="text"
+                   name="total" value="">
+
+        </div>
+    </div>
+
+</form>
+
+
+<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    function couponoffer(){
+    a=Number(document.getElementById('couponprice').value);
+    b = {{ob.price}};
+    c = b - a ;
+    document.getElementById('Total').value=c;
+    }
+
+</script>
+
+{% endblock content %}

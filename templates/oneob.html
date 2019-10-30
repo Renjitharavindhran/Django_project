@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div>
+    <center>
+        <br>
+        <br>
+        <br>
+        <img alt=" " src="{{ob.image.url}}" width="350" height="450">
+        <h1 style="color: lightslategray; font-weight: bolder;">{{ob.title}}</h1>
+        <h3 style="color: lightslategray;"> From: ${{ob.price}}</h3>
+        <h3 style="color: lightslategray;">Description: {{ob.description}} </h3>
+        {% if ob.offer %}
+        <h3 style="color: lightslategray;">Special offer</h3>
+        {% endif %}
+        <!--<h2><a href="delete/"><input name="Delete" type="button" value="Delete"-->
+        <!--style="color: lightslategray; font-weight: bolder;"></a></h2>-->
+
+
+    </center>
+
+    <form action="." method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+        <center>
+            <h3 style="color: lightslategray; font-weight: bolder; font-style: italic; font-family: serif;"></h3>
+            <br>
+            <br>
+            <!--{{ form.as_p }}-->
+            <label for="title">item</label>
+            <span>
+                    <input class="account_input" id="title" name="title_id"
+                           placeholder="Enter title"
+                           style="height: auto; padding: 5px; width: 220px; border: 1px solid #dedede;" type="text"
+                           value="{{ ob.title }}">
+                </span>
+            <br>
+            <br>
+            <label for="user">user</label>
+            <span>
+                    <input class="account_input" id="user" name="user"
+                           placeholder="Enter user"
+                           style="height: auto; padding: 5px; width: 220px; border: 1px solid #dedede;" type="text"
+                           value="{{user.username}}" readonly="readonly">
+                </span>
+            <br>
+            <br>
+            <label for="quantity">quantity</label>
+            <span>
+                    <input class="account_input" id="quantity" name="quantity"
+                           placeholder="quantity"
+                           style="height: auto; padding: 5px; width: 220px; border: 1px solid #dedede;" type="text"
+                           value=""  onkeyup="total()">
+                </span>
+            <br>
+            <br>
+            <label for="totalprice">totalprice</label>
+            <span>
+                    <input class="account_input" id="totalprice" name="totalprice"
+                           placeholder="totalprice"
+                           style="height: auto; padding: 5px; width: 220px; border: 1px solid #dedede;" type="text" readonly="readonly"
+                           value="">
+                </span>
+            <br>
+            <br>
+
+            <label for="size">size</label>
+            <span>
+                    <input class="account_input" id="size" name="size"
+                           placeholder="size"
+                           style="height: auto; padding: 5px; width: 220px; border: 1px solid #dedede;" type="text"
+                           value="">
+                </span>
+            <br>
+            <br>
+            <p class="submit">
+                <button class="btn btn-primary">Continue</button>
+            </p>
+
+        </center>
+        </form>
+        <!--<form action="." method="post">-->
+        <!--{% csrf_token %}-->
+        <!--<center>-->
+        <!--{% if form %}-->
+        <!--<p class="submit">-->
+        <!--<button class="btn btn-primary">Continue</button>-->
+        <!--</p>-->
+        <!--{% else %}-->
+        <!--<p class="submit">-->
+        <!--<button class="btn btn-primary">Cart</button>-->
+        <!--</p>-->
+        <!--{% endif %}-->
+        <!--</center>-->
+        <!--</form>-->
+
+</div>
+<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+ <script  type="text/javascript" charset="utf-8">
+    function total(){
+    a=Number(document.getElementById('quantity').value);
+    b = {{ob.price}};
+    c= a * b ;
+    document.getElementById('totalprice').value=c;
+    }
+ </script>
+{% endblock content %}

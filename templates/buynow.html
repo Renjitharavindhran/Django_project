@@ -1,0 +1,236 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<br>
+<br>
+<br>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 ftco-animate">
+                <form action="." method="post" class="billing-form">
+                    {% csrf_token%}
+                    <h3 class="mb-4 billing-heading" style="font-weight: bolder;">
+                        <center>Billing Details</center>
+                    </h3>
+                    <br>
+                    <div class="row align-items-end">
+                        <!--{% for ob in ob %}-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="firstname">Firt Name</label>
+                                <input class="form-control" id="firstname" name="firstname" placeholder="" type="text"
+                                       value="{{request.user}}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="lastname">Last Name</label>
+                                <input class="form-control" id="lastname" name="lastname" placeholder="" type="text"
+                                       value="{{ob.user.last_name}}">
+                            </div>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="country">State</label>
+                                <input class="form-control" id="country" name="state"
+                                       placeholder="state"
+                                       type="text">
+                            </div>
+                        </div>
+                        <!--<div class="col-md-12">-->
+                        <!--<div class="form-group">-->
+                        <!--<label for="country">State / Country</label>-->
+                        <!--<div class="select-wrap">-->
+                        <!--<div class="icon"><span class="ion-ios-arrow-down"></span></div>-->
+                        <!--<select class="form-control" id="country" name="state">-->
+                        <!--<option value="">Kerala</option>-->
+                        <!--<option value="">Italy</option>-->
+                        <!--<option value="">Philippines</option>-->
+                        <!--<option value="">South Korea</option>-->
+                        <!--<option value="">France</option>-->
+                        <!--<option value="">Japan</option>-->
+                        <!--</select>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <div class="w-100"></div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="streetaddress">Street Address</label>
+                                <input class="form-control" id="streetaddress" name="street"
+                                       placeholder="House number and street name"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="apartment">Apartment</label>
+                                <input class="form-control" id="apartment" name="apartment"
+                                       placeholder="Appartment, suite, unit etc: (optional)"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="towncity">Town / City</label>
+                                <input class="form-control" id="towncity" name="town" placeholder="" type="text">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="postcodezip">Postcode / ZIP *</label>
+                                <input class="form-control" id="postcodezip" name="postcode" placeholder="" type="text">
+                            </div>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input class="form-control" id="phone" name="phone" placeholder="" type="text">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="emailaddress">Email Address</label>
+                                <input class="form-control" id="emailaddress" name="email" placeholder="" type="text"
+                                       value="{{ob.user.email}}">
+                            </div>
+                        </div>
+                        <!--{% endfor %}-->
+                    </div>
+
+
+                    <div class="row align-items-end">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="couponcode">couponcodee</label>
+                                <input class="form-control" id="couponcode" name="couponcode" placeholder="" type="text"
+                                       value="" >
+                            </div>
+                        </div>
+                        <!--<div class="col-md-6">-->
+                            <!--<div class="form-group">-->
+                                <!--<label for="couponprice">coupon price</label>-->
+                                <!--<input class="form-control" id="couponprice" name="couponprice" placeholder=""-->
+                                       <!--type="text"-->
+                                       <!--value="{{ob.couponprice}}">-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                        <p class="submit">
+                            <button class="btn btn-primary" > place an order</button>
+                        </p>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="totalprice">totalprice</label>
+                                <input class="form-control" id="totalprice" name="totalprice" placeholder="" type="text"
+                                       value="">
+                            </div>
+                        </div>
+
+                    </div>
+                </form><!-- .form -->
+
+
+            <br>
+            <br>
+
+
+            <div class="row mt-5 pt-3 d-flex">
+                <div class="col-md-6 d-flex">
+                    {% for obj in ob %}
+                    <div class="cart-detail cart-total bg-light p-3 p-md-4">
+                        <h3 class="billing-heading mb-4" style="font-weight:bolder;">Cart Total</h3>
+                        <p class="d-flex">
+                            <span>Subtotal&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;</span>
+                            <span>$ {{obj.totalprice}}</span>
+                        </p>
+                        <p class="d-flex">
+                            <span>Delivery&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;</span>
+                            <span>$ 0.00</span>
+                        </p>
+                        <p class="d-flex">
+                            <span>Discount&nbsp;&nbsp;&nbsp;:&nbsp;</span>
+                            <span>$ 0.00</span>
+                        </p>
+                        <hr>
+                        <p class="d-flex total-price">
+                            <span>Total&nbsp;&nbsp;:&nbsp;</span>
+                            <span>$ {{obj.totalprice}}</span>
+                        </p>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="col-md-6">
+                    <div class="cart-detail bg-light p-3 p-md-4">
+                        <h3 class="billing-heading mb-4" style="font-weight:bolder;">Payment Method</h3>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="radio">
+                                    <label><input class="mr-2" name="optradio" type="radio"> Direct Bank
+                                        Transfer</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="radio">
+                                    <label><input class="mr-2" name="optradio" type="radio"> Check Payment</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="radio">
+                                    <label><input class="mr-2" name="optradio" type="radio"> Paypal</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="checkbox">
+                                    <label><input class="mr-2" type="checkbox" value=""> I have read and accept the
+                                        terms and conditions</label>
+                                </div>
+                            </div>
+                        </div>
+                        <p>aaa{{ob.totalprice}}</p>
+
+
+                        <p class="submit">
+                            <button class="btn btn-primary"> place an order</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- .col-md-8 -->
+    </div> <!-- .row -->
+    </div> <!-- .container -->
+</section> <!-- .section -->
+
+<br>
+<br>
+
+<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function()
+    {
+    a = {{co.couponprice}};
+    b = {{ob.totalprice}};
+    c = b - a ;
+    alert(c);
+    <!--document.getElementById('totalprice').value=c;-->
+    }
+
+
+
+<!--</script>-->
+
+
+{% endblock content %}
